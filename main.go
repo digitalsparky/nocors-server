@@ -39,7 +39,16 @@ func main() {
 
 	app.Name = "nocors-server"
 	app.Usage = "Serve local files (like React, VueJS, etc) with valid CORS * exemption"
-	app.Version = "0.0.1"
+
+	if (os.Getenv("CI") == "true") && (os.Getenv("TRAVIS") == "true") {
+		if os.Getenv("TRAVIS_TAG") != "" {
+			app.Version = os.Getenv("TRAVIS_COMMIT")
+		} else {
+			app.Version = os.Getenv("TRAVIS_TAG")
+		}
+	} else {
+		app.Version = "development"
+	}
 
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
