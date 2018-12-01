@@ -1,17 +1,3 @@
-sudo: false
-language: go
-env:
-- GO111MODULE=on
-go:
-- 1.11.x
-script:
-- mkdir artifacts/
-- GOOS="linux" GOARCH="amd64" go build -ldflags "-s -w" -o artifacts/nocors-server-linux-amd64.bin
-- GOOS="linux" GOARCH="386" go build -ldflags "-s -w" -o artifacts/nocors-server-linux-i386.bin
-- GOOS="darwin" GOARCH="amd64" go build -ldflags "-s -w" -o artifacts/nocors-server-darwin-amd64.bin
-- GOOS="darwin" GOARCH="386" go build -ldflags "-s -w" -o artifacts/nocors-server-darwin-i386.bin
-- GOOS="windows" GOARCH="amd64" go build -ldflags "-s -w" -o artifacts/nocors-server-windows-amd64.exe
-- GOOS="windows" GOARCH="386" go build -ldflags "-s -w" -o artifacts/nocors-server-windows-i386.exe
 deploy:
   provider: releases
   api_key:
@@ -21,3 +7,9 @@ deploy:
     repo: digitalsparky/nocors-server
     tags: true
     all_branches: true
+sudo: false
+language: go
+go:
+- 1.11.x
+script:
+- make
