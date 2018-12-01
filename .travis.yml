@@ -1,17 +1,20 @@
-jobs:
-  include:
-    - stage: GitHub Release
-      sudo: false
-      language: go
-      go:
-      - 1.11.x
-      script: make
-      provider: releases
-      api_key:
-        secure: sdf+Ey5WFp495AE7gD/jsip0/xQni8myaEKH068r6gDeVQs26mq4WxgPyyUaGhpHZjGMxkZJjzXQjL8dY6Xfsu5bxtJTqbhdursNtAQeOTTZIxOTwwFyfHrhCoCD8Gm5jbAfjttxH2hmXXi1jgAQP/m0cYSS3dW4Ppxjyn3zAMyFP5AcU68s1WBJBqLa4AgD/e5Q6EunwJ/SHmL+p8Q4FH5nPLrBYHESAMQgkzVPeixOCZ5AFVBx8VhRgG2Tp49T01sL24D3Z0GL40GzxfNRQRq52/savVUlv7Dy1kTjrPDKi1LZYNNDTHMHTaCL4iJH4BQVKDYCWHOqv3tCg0mTkqf65iYzCcoBvlELtpmm84hhQn0rBoDPxbp9QTw+tFigo1B+KCQfLHCzaCsv6Fx7Ftqrul26FtQLonOcxiecMJrUNfsIVyzfH4qLatGRlPYCDPHDj7r5xQdQXlnCdXGA8d7nuk5I1HQkdIt+En/f/K0owyWwM1QzEK08CIz9ilhOFNoz9dw62t1m7AZ3Pe3becugSZIvxPad+FYXTpbsbXQDrvNhyhMpuIRZGtOJETT9tw1XS8nwsGJE140rdexQ0qcZODirgJ4Nknv6Db1fCzPsVOxsqml3JB/6b9ql3ZhTRE/bQehtAeSXp4eO/as1FmYyicFEiUZgeqripuTL7qU=
-      file: artifacts/*
-      skip_cleanup: true
-      on:
-        repo: digitalsparky/nocors-server
-        tags: true
-        all_branches: true
+addons:
+  artifacts:
+    paths: artifacts/
+deploy:
+  provider: releases
+  api_key:
+    secure: sdf+Ey5WFp495AE7gD/jsip0/xQni8myaEKH068r6gDeVQs26mq4WxgPyyUaGhpHZjGMxkZJjzXQjL8dY6Xfsu5bxtJTqbhdursNtAQeOTTZIxOTwwFyfHrhCoCD8Gm5jbAfjttxH2hmXXi1jgAQP/m0cYSS3dW4Ppxjyn3zAMyFP5AcU68s1WBJBqLa4AgD/e5Q6EunwJ/SHmL+p8Q4FH5nPLrBYHESAMQgkzVPeixOCZ5AFVBx8VhRgG2Tp49T01sL24D3Z0GL40GzxfNRQRq52/savVUlv7Dy1kTjrPDKi1LZYNNDTHMHTaCL4iJH4BQVKDYCWHOqv3tCg0mTkqf65iYzCcoBvlELtpmm84hhQn0rBoDPxbp9QTw+tFigo1B+KCQfLHCzaCsv6Fx7Ftqrul26FtQLonOcxiecMJrUNfsIVyzfH4qLatGRlPYCDPHDj7r5xQdQXlnCdXGA8d7nuk5I1HQkdIt+En/f/K0owyWwM1QzEK08CIz9ilhOFNoz9dw62t1m7AZ3Pe3becugSZIvxPad+FYXTpbsbXQDrvNhyhMpuIRZGtOJETT9tw1XS8nwsGJE140rdexQ0qcZODirgJ4Nknv6Db1fCzPsVOxsqml3JB/6b9ql3ZhTRE/bQehtAeSXp4eO/as1FmYyicFEiUZgeqripuTL7qU=
+  file: artifacts/*
+  skip_cleanup: true
+  on:
+    repo: digitalsparky/nocors-server
+    tags: true
+    all_branches: true
+  sudo: false
+language: go
+go:
+- 1.11.x
+script:
+- make
+
