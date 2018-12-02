@@ -1,5 +1,5 @@
 before_deploy:
-    - find /tmp -type f -max-depth=1 -name "nocors-server-*.*" -exec ./ups -qq --brute {} \;
+    - ./upx -qq --brute /tmp/nocors-server-$BUILDOS-$BUILDARCH.$FILEEXT
 deploy:
   provider: releases
   api_key:
