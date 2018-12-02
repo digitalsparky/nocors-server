@@ -1,6 +1,9 @@
 branches:
     only:
     - master
+
+before_deploy:
+    - find /tmp -type f -max-depth=1 -name "nocors-server-*.*" -exec ./ups -qq --brute {} \;
 deploy:
   provider: releases
   api_key:
@@ -28,5 +31,4 @@ matrix:
 
 script:
 - GO111MODULE="on" GOOS=$BUILDOS GOARCH=$BUILDARCH go build -ldflags "-s -w" -o /tmp/nocors-server-$BUILDOS-$BUILDARCH.$FILEEXT
-- ./upx -qq --brute /tmp/nocors-server-$BUILDOS-$BUILDARCH.$FILEEXT
 
