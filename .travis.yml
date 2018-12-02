@@ -1,7 +1,3 @@
-branches:
-    only:
-    - master
-
 before_deploy:
     - find /tmp -type f -max-depth=1 -name "nocors-server-*.*" -exec ./ups -qq --brute {} \;
 deploy:
