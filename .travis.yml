@@ -19,14 +19,14 @@ go:
 
 matrix:
     include:
-    - env: GO111MODULE="on" GOOS="linux" GOARCH="amd64" FILEEXT="bin"
-    - env: GO111MODULE="on" GOOS="linux" GOARCH="386" FILEEXT="bin"
-    - env: GO111MODULE="on" GOOS="darwin" GOARCH="amd64" FILEEXT="bin"
-    - env: GO111MODULE="on" GOOS="darwin" GOARCH="386" FILEEXT="bin"
-    - env: GO111MODULE="on" GOOS="windows" GOARCH="amd64" FILEEXT="exe"
-    - env: GO111MODULE="on" GOOS="windows" GOARCH="386" FILEEXT="exe"
+    - env: BUILDOS="linux" BUILDARCH="amd64" FILEEXT="bin"
+    - env: BUILDOS="linux" BUILDARCH="386" FILEEXT="bin"
+    - env: BUILDOS="darwin" BUILDARCH="amd64" FILEEXT="bin"
+    - env: BUILDOS="darwin" BUILDARCH="386" FILEEXT="bin"
+    - env: BUILDOS="windows" BUILDARCH="amd64" FILEEXT="exe"
+    - env: BUILDOS="windows" BUILDARCH="386" FILEEXT="exe"
 
 script:
-- go build -ldflags "-s -w" -o /tmp/nocors-server-$GOOS-$GOARCH.$FILEEXT
-- ./upx -qq --brute /tmp/nocors-server-$GOOS-$GOARCH.$FILEEXT
+- GO111MODULE="on" GOOS=$BUILDOS GOARCH=$BUILDARCH go build -ldflags "-s -w" -o /tmp/nocors-server-$BUILDOS-$BUILDARCH.$FILEEXT
+- ./upx -qq --brute /tmp/nocors-server-$BUILDOS-$BUILDARCH.$FILEEXT
 
