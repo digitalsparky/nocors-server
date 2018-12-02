@@ -25,7 +25,8 @@ matrix:
     - env: GO111MODULE="on" GOOS="darwin" GOARCH="386" FILEEXT="bin"
     - env: GO111MODULE="on" GOOS="windows" GOARCH="amd64" FILEEXT="exe"
     - env: GO111MODULE="on" GOOS="windows" GOARCH="386" FILEEXT="exe"
-    script:
-    - go build -ldflags "-s -w" -o /tmp/nocors-server-$GOOS-$GOARCH.$FILEEXT
-    - ./upx -qq --brute /tmp/nocors-server-$GOOS-$GOARCH.$FILEEXT
+
+script:
+- go build -ldflags "-s -w" -o /tmp/nocors-server-$GOOS-$GOARCH.$FILEEXT
+- ./upx -qq --brute /tmp/nocors-server-$GOOS-$GOARCH.$FILEEXT
 
