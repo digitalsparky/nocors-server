@@ -13,7 +13,7 @@ However you can build it yourself if you like.
 
 Simply run:
 
-```make```
+```go build -ldflags "-s -w" -o nocors-server```
 
 Binaries are also compressed using UPX.
 
